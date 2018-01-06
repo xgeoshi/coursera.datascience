@@ -13,7 +13,8 @@ output:
 ```r
 zipped.file <- "activity.zip"
 inside.zip <- unzip(zipped.file, list = TRUE)[1,1]
-activity <- read.csv(unz(zipped.file, inside.zip), stringsAsFactors = FALSE)
+csv.inzip <- unz(zipped.file, inside.zip)
+activity <- read.csv(csv.inzip, stringsAsFactors = FALSE)
 ```
 
 2. Process/transform the data (if necessary) into a format suitable
@@ -24,6 +25,7 @@ for your analysis
 activity <- transform(activity, date = as.Date(date))
 ```
 
+***
 
 ## What is mean total number of steps taken per day?
 1. Make a histogram of the total number of steps taken each day
@@ -45,6 +47,7 @@ median.steps <- median(sum.perday)
 - Mean of the total number of steps taken per day is **9354**.  
 - Median of the total number of steps taken per day is **10395**.
 
+***
 
 ## What is the average daily activity pattern?
 1. Make a time series plot (i.e. type = "l") of the 5-minute interval (x-axis)
@@ -67,6 +70,7 @@ max.mean.interval <- names(which.max(mean.interval))
 ```
 **835** is the maximum average interval.
 
+***
 
 ## Imputing missing values
 1. Calculate and report the total number of missing values in the dataset (i.e.
@@ -117,6 +121,7 @@ impute.median <- as.integer(median(sum.impute.perday))
 - Total daily number of steps increased from 
 **570608** to **656704**.
 
+***
 
 ## Are there differences in activity patterns between weekdays and weekends?
 1. Create a new factor variable in the dataset with two levels -- "weekday" and

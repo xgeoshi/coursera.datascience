@@ -314,11 +314,13 @@ $(document).ready(function () {
 </ol>
 <pre class="r"><code>zipped.file &lt;- &quot;activity.zip&quot;
 inside.zip &lt;- unzip(zipped.file, list = TRUE)[1,1]
-activity &lt;- read.csv(unz(zipped.file, inside.zip), stringsAsFactors = FALSE)</code></pre>
+csv.inzip &lt;- unz(zipped.file, inside.zip)
+activity &lt;- read.csv(csv.inzip, stringsAsFactors = FALSE)</code></pre>
 <ol start="2" type="1">
 <li>Process/transform the data (if necessary) into a format suitable for your analysis</li>
 </ol>
 <pre class="r"><code>activity &lt;- transform(activity, date = as.Date(date))</code></pre>
+<hr />
 </section>
 <section id="what-is-mean-total-number-of-steps-taken-per-day" class="level2">
 <h2>What is mean total number of steps taken per day?</h2>
@@ -338,6 +340,7 @@ median.steps &lt;- median(sum.perday)</code></pre>
 </li>
 <li>Median of the total number of steps taken per day is <strong>10395</strong>.</li>
 </ul>
+<hr />
 </section>
 <section id="what-is-the-average-daily-activity-pattern" class="level2">
 <h2>What is the average daily activity pattern?</h2>
@@ -354,6 +357,7 @@ plot(x = names(mean.interval), y = mean.interval, type = &quot;l&quot;,
 </ol>
 <pre class="r"><code>max.mean.interval &lt;- names(which.max(mean.interval))</code></pre>
 <p><strong>835</strong> is the maximum average interval.</p>
+<hr />
 </section>
 <section id="imputing-missing-values" class="level2">
 <h2>Imputing missing values</h2>
@@ -389,6 +393,7 @@ impute.median &lt;- as.integer(median(sum.impute.perday))</code></pre>
 </li>
 <li>Total daily number of steps increased from <strong>570608</strong> to <strong>656704</strong>.</li>
 </ul>
+<hr />
 </section>
 <section id="are-there-differences-in-activity-patterns-between-weekdays-and-weekends" class="level2">
 <h2>Are there differences in activity patterns between weekdays and weekends?</h2>

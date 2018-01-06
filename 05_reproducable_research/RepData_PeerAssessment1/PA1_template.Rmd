@@ -12,9 +12,8 @@ output:
 ```{r load, echo=TRUE}
 zipped.file <- "activity.zip"
 inside.zip <- unzip(zipped.file, list = TRUE)[1,1]
-connect.csv <- unz(zipped.file, inside.zip)
-activity <- read.csv(connect.csv, stringsAsFactors = FALSE)
-close(connect.csv)
+csv.inzip <- unz(zipped.file, inside.zip)
+activity <- read.csv(csv.inzip, stringsAsFactors = FALSE)
 ```
 
 2. Process/transform the data (if necessary) into a format suitable
@@ -24,6 +23,7 @@ for your analysis
 activity <- transform(activity, date = as.Date(date))
 ```
 
+***
 
 ## What is mean total number of steps taken per day?
 1. Make a histogram of the total number of steps taken each day
@@ -41,6 +41,7 @@ median.steps <- median(sum.perday)
 - Mean of the total number of steps taken per day is **`r mean.steps`**.  
 - Median of the total number of steps taken per day is **`r median.steps`**.
 
+***
 
 ## What is the average daily activity pattern?
 1. Make a time series plot (i.e. type = "l") of the 5-minute interval (x-axis)
@@ -59,6 +60,7 @@ max.mean.interval <- names(which.max(mean.interval))
 ```
 **`r max.mean.interval`** is the maximum average interval.
 
+***
 
 ## Imputing missing values
 1. Calculate and report the total number of missing values in the dataset (i.e.
@@ -103,6 +105,7 @@ impute.median <- as.integer(median(sum.impute.perday))
 - Total daily number of steps increased from 
 **`r sum(activity$steps, na.rm = TRUE)`** to **`r as.integer(sum(new$steps))`**.
 
+***
 
 ## Are there differences in activity patterns between weekdays and weekends?
 1. Create a new factor variable in the dataset with two levels -- "weekday" and
